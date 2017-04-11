@@ -1,5 +1,11 @@
 var request = require("request");
 var fs = require("fs");
+var userInput = process.argv.slice(2, 4);
+
+if (userInput.length !== 2) {
+  console.log("Please enter a username and repo name.");
+  return;
+}
 
 console.log("Welcome to the GitHub Avatar Downloader!");
 
@@ -32,7 +38,7 @@ function downloadImageByURL(url, filePath) {
   .pipe(fs.createWriteStream(filePath));
 }
 
-getRepoContributors("jQuery", "jQuery", function(err, result) {
+getRepoContributors(userInput[0], userInput[1], function(err, result) {
   var avatars = [];
   for (var i in result) {
     downloadImageByURL(result[i].avatar_url, `./avatars/${result[i].login}.jpg`)
