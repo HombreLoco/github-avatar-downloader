@@ -16,8 +16,7 @@ var GITHUB_TOKEN = "9dce65ff12e3df64c728a9b476037e0aa081e90b";
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
     url: `https://${GITHUB_USER}:${GITHUB_TOKEN}@api.github.com/repos/${repoOwner}/${repoName}/contributors`,
-    headers: {
-      "User-Agent": "HombreLoco"
+    headers: { "User-Agent": "HombreLoco"
     }
   };
 
@@ -33,7 +32,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 function downloadImageByURL(url, filePath) {
   request.get(url)
   .on("error", function (err) {
-          throw err;
+    throw err;
   })
   .pipe(fs.createWriteStream(filePath));
 }
