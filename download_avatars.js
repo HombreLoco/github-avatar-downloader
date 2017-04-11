@@ -19,12 +19,24 @@ function getRepoContributors(repoOwner, repoName, cb) {
     if (err) {
       console.log("Error!!!");
     }
-    console.log(JSON.parse(body));
+    var bodyObject = (JSON.parse(body));
+    cb(err, bodyObject);
   });
 }
 
+// function getUserAvatars(err, result) {
+//   var avatars = [];
+//   for (var i in result) {
+//     avatars.push(result[i].avatar_url);
+//   }
+//   console.log(avatars);
+// }
+
 
 getRepoContributors("jQuery", "jQuery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
+  var avatars = [];
+  for (var i in result) {
+    avatars.push(result[i].avatar_url);
+  }
+  console.log(avatars);
 });
